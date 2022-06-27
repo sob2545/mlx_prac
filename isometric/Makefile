@@ -6,7 +6,7 @@
 #    By: sesim <sesim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 11:21:24 by sesim             #+#    #+#              #
-#    Updated: 2022/06/25 08:18:23 by sesim            ###   ########.fr        #
+#    Updated: 2022/06/26 11:22:55 by sesim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,30 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRCS = isometric.c
+OBJ_E = euler_isometric.o
 
-OBJS = $(SRCS:.c=.o)
+OBJ_V = vector_isometric.o
 
-NAME = fdf
+NAME = vec euler
 
 all : $(NAME)
 
-fdf: $(OBJS)
+euler : $(OBJ_E)
 	make -C ../mlx
 	$(CC) $(CLFAGS) -L ../mlx -l mlx -framework OpenGL -framework AppKit $^ -o $@
+	
+vec : $(OBJ_V)
+	$(CC) $(CLFAGS) -L ../mlx -l mlx -framework OpenGL -framework AppKit $^ -o $@
+
+euler_isometric.o : euler_isometric.c
+	$(CC) $(CFLAGS) -c $^
+
+vector_isometric.o : vector_isometric.c
+	$(CC) $(CFLAGS) -c $^
 
 clean :
 	make -C ../mlx clean
-	$(RM) $(OBJS)
+	$(RM) $(OBJ_V) $(OBJ_E)
 
 fclean : clean
 	$(RM) $(NAME)
@@ -37,4 +46,4 @@ re :
 	make fclean
 	make all
 
-.PHONY : fdf all clean fclean re
+.PHONY : euler vec all clean fclean re
