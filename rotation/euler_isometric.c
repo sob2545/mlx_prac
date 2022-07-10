@@ -6,15 +6,16 @@
 /*   By: sesim <sesim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 11:20:07 by sesim             #+#    #+#             */
-/*   Updated: 2022/06/27 10:51:49 by sesim            ###   ########.fr       */
+/*   Updated: 2022/07/07 08:22:32 by sesim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
-static void	rotate_x(int *y, int *z, double angle)
+static void	rotate_x(double *y, double *z, double angle)
 {
 	int	prev_y;
 
@@ -32,7 +33,6 @@ static void	rotate_y(int *x, int *z, double angle)
 	*x = prev_x * cos(angle) + (*z) * sin(angle);
 	*z = -prev_x * sin(angle) + (*z) * cos(angle);
 }
-*/
 
 static void	rotate_z(int *x, int *y, double angle)
 {
@@ -45,7 +45,6 @@ static void	rotate_z(int *x, int *y, double angle)
 	*y = prev_x * sin(angle) + prev_y * cos(angle);
 }
 
-/*
 static void	isometric(int *x, int *y, int z)
 {
 	int	prev_x;
@@ -64,10 +63,11 @@ void	vector_pixel(int x, int y, int z, void *mlx, void *win)
 }
 */
 
-void	euler_pixel(int x, int y, int z, void *mlx, void *win)
+void	euler_pixel(double x, double y, double z, void *mlx, void *win)
 {
-	rotate_z(&x, &y, (45 * (M_PI / 180)));
-	rotate_x(&y, &z, ((90 - 35.264) * (M_PI / 180)));
+	//rotate_z(&x, &y, (45 * (M_PI / 180)));
+	rotate_x(&y, &z, ((90) * (M_PI / 180)));
+	printf("%f, %f, %f", x, y, z);
 	mlx_pixel_put(mlx, win, x + (1980 / 2), y + (1080 / 2), 0xFFFFFF);
 }
 
@@ -90,7 +90,8 @@ int	main(void)
 	vector_pixel(0, 0, 0, mlx, win);
 	*/
 
-	euler_pixel(100, 0, 0, mlx, win);
+	euler_pixel(2, 4, 5, mlx, win);
+	/*
 	euler_pixel(0, -100, 0, mlx, win);
 	euler_pixel(100, -100, 0, mlx, win);
 	euler_pixel(100, 0, 100, mlx, win);
@@ -98,5 +99,6 @@ int	main(void)
 	euler_pixel(0, 0, 100, mlx, win);
 	euler_pixel(0, -100, 100, mlx, win);
 	euler_pixel(0, 0, 0, mlx, win);
+	*/
 	mlx_loop(mlx);
 }

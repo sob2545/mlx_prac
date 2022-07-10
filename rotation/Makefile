@@ -6,7 +6,7 @@
 #    By: sesim <sesim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 11:21:24 by sesim             #+#    #+#              #
-#    Updated: 2022/06/26 11:22:55 by sesim            ###   ########.fr        #
+#    Updated: 2022/07/10 14:45:00 by sesim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ RM = rm -f
 
 OBJ_E = euler_isometric.o
 
-OBJ_V = vector_isometric.o
+OBJ_V = main.o
 
 NAME = vec euler
 
@@ -32,7 +32,7 @@ vec : $(OBJ_V)
 euler_isometric.o : euler_isometric.c
 	$(CC) $(CFLAGS) -c $^
 
-vector_isometric.o : vector_isometric.c
+main.o : main.c
 	$(CC) $(CFLAGS) -c $^
 
 clean :
