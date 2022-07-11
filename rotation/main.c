@@ -55,8 +55,8 @@ int	main(void)
 
 int	key_hook(int keycode, void *param)
 {
-	const double	cos15 = cos(M_PI / 24);
-	const double	sin15 = sin(M_PI / 24);
+	const double	cos15 = cos(M_PI / 180);
+	const double	sin15 = sin(M_PI / 180);
 	t_quaternion	*q = (t_quaternion *)param;
 
 	if (keycode == KEY_Q)
@@ -77,10 +77,10 @@ void	rotate_q(t_quaternion *q, double w, double x, double y, double z)
 {
 	double	temp[4];
 
-	temp[0] = q->w * w - q->x * x - q->y * y - q->z * z;
-	temp[1] = q->x * w + q->w * x - q->z * y + q->y * z;
-	temp[2] = q->y * w + q->z * x + q->w * y - q->x * z;
-	temp[3] = q->z * w - q->y * x + q->x * y + q->w * z;
+	temp[0] = w * q->w - x * q->x - y * q->y - z * q->z;
+	temp[1] = x * q->w + w * q->x - z * q->y + y * q->z;
+	temp[2] = y * q->w + z * q->x + w * q->y - x * q->z;
+	temp[3] = z * q->w - y * q->x + x * q->y + w * q->z;
 	q->w = temp[0];
 	q->x = temp[1];
 	q->y = temp[2];
