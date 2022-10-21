@@ -46,8 +46,10 @@ int	main(void)
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
 	t_quaternion	q;
-	q.w = 1.0;
-	q.x = q.y = q.z = 0.0;
+	q.w = 1;
+	q.x = 0;
+	q.y = 0;
+	q.z = 0;
 	mlx_key_hook(win_ptr, &key_hook, &q);
 	mlx_loop_hook(mlx_ptr, &loop_hook, &q);
 	mlx_loop(mlx_ptr);
@@ -55,8 +57,8 @@ int	main(void)
 
 int	key_hook(int keycode, void *param)
 {
-	const double	cos15 = cos(M_PI / 180);
-	const double	sin15 = sin(M_PI / 180);
+	const double	cos15 = cos(7.5 * M_PI / 180);
+	const double	sin15 = sin(7.5 * M_PI / 180);
 	t_quaternion	*q = (t_quaternion *)param;
 
 	if (keycode == KEY_Q)
